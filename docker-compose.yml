@@ -24,8 +24,6 @@ services:
       --certificatesResolvers.internal-ca.acme.httpChallenge.entryPoint=HTTP
       --serversTransport.insecureSkipVerify=true
       --serversTransport.rootCAs=/usr/local/share/ca-certificates/ca.crt
-      --log=true
-      --log.level=DEBUG
     network_mode: host
     ports:
       - "80:80"
