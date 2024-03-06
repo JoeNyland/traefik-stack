@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik
+    container_name: traefik
+    restart: unless-stopped
+    command: >
+      --api.insecure=true
+      --providers.docker
+      --entryPoints.HTTP.address=":80"
+      --entrypoints.HTTPS.address=":443"
+      --entryPoints.traefik.address=":8081"
+      --providers.docker.exposedByDefault=false
+      --entrypoints.HTTP.address=:80
+      --entrypoints.HTTP.http.redirections.entrypoint.to=HTTPS
+      --entryPoints.HTTP.http.redirections.entrypoint.scheme=https
+      --entrypoints.HTTPS.http.tls.certresolver=internal-ca
+      --certificatesResolvers.internal-ca.acme.tlsChallenge=true
+      --certificatesResolvers.internal-ca.acme.email=joe@home.joe.nyland.io
+      --certificatesresolvers.internal-ca.acme.caServer=https://ca.home.joe.nyland.io:9000/acme/acme/directory
+      --certificatesResolvers.internal-ca.acme.storage=/letsencrypt/acme.json
+      --certificatesResolvers.internal-ca.acme.httpChallenge=true
+      --certificatesResolvers.internal-ca.acme.httpChallenge.entryPoint=HTTP
+      --serversTransport.insecureSkipVerify=true
+      --serversTransport.rootCAs=/usr/local/share/ca-certificates/ca.crt
+      --log=true
+      --log.level=DEBUG
+    network_mode: host
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081:8081" # The Web UI (enabled by --api.insecure=true)
+    extra_hosts:
+      - "host.docker.internal:fdaa:205:2005:10::10"
+      - "host.docker.internal:10.10.0.10"
+    labels:
+      traefik.enable: true
+      traefik.http.services.traefik.loadbalancer.server.port: 8081
+      traefik.http.middlewares.traefik-redirect.redirectScheme.scheme: https
+      traefik.http.routers.traefik-http.entrypoints: HTTP
+      traefik.http.routers.traefik-http.rule: Host(`traefik`)
+      traefik.http.routers.traefik-http.middlewares: traefik-redirect
+      traefik.http.routers.traefik-https.entrypoints: HTTPS
+      traefik.http.routers.traefik-https.rule: Host(`traefik`)
+      traefik.http.routers.traefik-https.tls: true
+      traefik.http.routers.traefik-https.tls.certresolver: internal-ca
+    environment:
+      LEGO_CA_CERTIFICATES: /usr/local/share/ca-certificates/ca.crt
+      LEGO_CA_SERVER_NAME: ca.home.joe.nyland.io
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /containers/traefik/ca.crt:/usr/local/share/ca-certificates/ca.crt
+      - /containers/traefik/letsencrypt/acme.json:/letsencrypt/acme.json
