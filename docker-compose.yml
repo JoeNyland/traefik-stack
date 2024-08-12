@@ -15,7 +15,7 @@ services:
       --entryPoints.HTTP.http.redirections.entrypoint.scheme=https
       --entrypoints.HTTPS.http.tls.certresolver=internal-ca
       --certificatesResolvers.internal-ca.acme.tlsChallenge=true
-      --certificatesResolvers.internal-ca.acme.email=joe@home.joe.nyland.io
+      --certificatesResolvers.internal-ca.acme.email=admin@home.joe.nyland.io
       --certificatesresolvers.internal-ca.acme.caServer=https://ca.home.joe.nyland.io:9000/acme/acme/directory
       --certificatesResolvers.internal-ca.acme.storage=/letsencrypt/acme.json
       --certificatesResolvers.internal-ca.acme.httpChallenge=true
