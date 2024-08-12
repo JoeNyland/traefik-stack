@@ -8,10 +8,10 @@ services:
       --providers.docker
       --providers.docker.exposedByDefault=false
       --entryPoints.HTTP.address=":80"
-      --entrypoints.HTTPS.address=":443"
-      --entrypoints.HTTP.http.redirections.entrypoint.to=HTTPS
+      --entryPoints.HTTPS.address=":443"
+      --entryPoints.HTTP.http.redirections.entrypoint.to=HTTPS
       --entryPoints.HTTP.http.redirections.entrypoint.scheme=https
-      --entrypoints.HTTPS.http.tls.certresolver=internal-ca
+      --entryPoints.HTTPS.http.tls.certresolver=internal-ca
       --entryPoints.traefik.address=":8081"
       --certificatesResolvers.internal-ca.acme.tlsChallenge=true
       --certificatesResolvers.internal-ca.acme.email=admin@home.joe.nyland.io
