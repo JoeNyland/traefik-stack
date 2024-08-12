@@ -6,10 +6,10 @@ services:
     command: >
       --api.insecure=true
       --providers.docker
+      --providers.docker.exposedByDefault=false
       --entryPoints.HTTP.address=":80"
       --entrypoints.HTTPS.address=":443"
       --entryPoints.traefik.address=":8081"
-      --providers.docker.exposedByDefault=false
       --entrypoints.HTTP.address=:80
       --entrypoints.HTTP.http.redirections.entrypoint.to=HTTPS
       --entryPoints.HTTP.http.redirections.entrypoint.scheme=https
