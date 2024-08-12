@@ -9,7 +9,6 @@ services:
       --providers.docker.exposedByDefault=false
       --entryPoints.HTTP.address=":80"
       --entrypoints.HTTPS.address=":443"
-      --entrypoints.HTTP.address=:80
       --entrypoints.HTTP.http.redirections.entrypoint.to=HTTPS
       --entryPoints.HTTP.http.redirections.entrypoint.scheme=https
       --entrypoints.HTTPS.http.tls.certresolver=internal-ca
