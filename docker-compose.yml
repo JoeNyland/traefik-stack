@@ -27,7 +27,7 @@ services:
       - "443:443"
       - "8081:8081" # The Web UI (enabled by --api.insecure=true)
     extra_hosts:
-      - "host.docker.internal:2a00:23c8:bda0:b310:6ebf:b5ff:fe03:8219"
+      - "host.docker.internal:2a00:23c8:bda0:b310::5"
       - "host.docker.internal:10.10.0.5"
     environment:
       LEGO_CA_CERTIFICATES: /usr/local/share/ca-certificates/ca.crt
