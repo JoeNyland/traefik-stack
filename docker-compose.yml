@@ -19,7 +19,6 @@ services:
       --certificatesResolvers.internal-ca.acme.storage=/letsencrypt/acme.json
       --certificatesResolvers.internal-ca.acme.httpChallenge=true
       --certificatesResolvers.internal-ca.acme.httpChallenge.entryPoint=http
-      --serversTransport.insecureSkipVerify=true
       --serversTransport.rootCAs=/usr/local/share/ca-certificates/ca.crt
     network_mode: host
     ports:
