@@ -29,6 +29,16 @@ services:
     extra_hosts:
       - "host.docker.internal:2a00:23c8:bda0:b310::5"
       - "host.docker.internal:10.10.0.5"
+    labels:
+      traefik.enable: true
+      traefik.http.services.traefik.loadbalancer.server.port: 8081
+      traefik.http.routers.traefik.rule: Host(`traefik`)
+      traefik.http.routers.traefik.middlewares: traefik-ipallowlist
+      traefik.http.middlewares.traefik-ipallowlist.ipallowlist.sourcerange: >
+        2a00:23c8:bda0:b310::/64,
+        10.10.0.0/16,
+        fdff:0205:2005::/123,
+        172.16.255.0/27
     environment:
       LEGO_CA_CERTIFICATES: /usr/local/share/ca-certificates/ca.crt
       LEGO_CA_SERVER_NAME: ca.home.joe.nyland.io
