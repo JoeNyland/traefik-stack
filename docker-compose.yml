@@ -7,18 +7,18 @@ services:
       --api.insecure=true
       --providers.docker
       --providers.docker.exposedByDefault=false
-      --entryPoints.HTTP.address=":80"
-      --entryPoints.HTTPS.address=":443"
-      --entryPoints.HTTP.http.redirections.entrypoint.to=HTTPS
-      --entryPoints.HTTP.http.redirections.entrypoint.scheme=https
-      --entryPoints.HTTPS.http.tls.certresolver=internal-ca
+      --entryPoints.http.address=":80"
+      --entryPoints.https.address=":443"
+      --entryPoints.http.http.redirections.entrypoint.to=https
+      --entryPoints.http.http.redirections.entrypoint.scheme=https
+      --entryPoints.https.http.tls.certresolver=internal-ca
       --entryPoints.traefik.address=":8081"
       --certificatesResolvers.internal-ca.acme.tlsChallenge=true
       --certificatesResolvers.internal-ca.acme.email=admin@home.joe.nyland.io
       --certificatesresolvers.internal-ca.acme.caServer=https://ca.home.joe.nyland.io:9000/acme/acme/directory
       --certificatesResolvers.internal-ca.acme.storage=/letsencrypt/acme.json
       --certificatesResolvers.internal-ca.acme.httpChallenge=true
-      --certificatesResolvers.internal-ca.acme.httpChallenge.entryPoint=HTTP
+      --certificatesResolvers.internal-ca.acme.httpChallenge.entryPoint=http
       --serversTransport.insecureSkipVerify=true
       --serversTransport.rootCAs=/usr/local/share/ca-certificates/ca.crt
     network_mode: host
