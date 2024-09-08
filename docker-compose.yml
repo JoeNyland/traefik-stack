@@ -19,7 +19,7 @@ services:
       --certificatesResolvers.internal-ca.acme.storage=/letsencrypt/acme.json
       --certificatesResolvers.internal-ca.acme.httpChallenge=true
       --certificatesResolvers.internal-ca.acme.httpChallenge.entryPoint=http
-      --serversTransport.rootCAs=/usr/local/share/ca-certificates/ca.crt
+      --serversTransport.rootCAs=/etc/ssl/certs/ca-certificates.crt
     network_mode: host
     ports:
       - "80:80"
@@ -39,9 +39,9 @@ services:
         fdff:0205:2005::/123,
         172.16.255.0/27
     environment:
-      LEGO_CA_CERTIFICATES: /usr/local/share/ca-certificates/ca.crt
+      LEGO_CA_CERTIFICATES: /etc/ssl/certs/ca-certificates.crt
       LEGO_CA_SERVER_NAME: ca.home.joe.nyland.io
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /containers/traefik/ca.crt:/usr/local/share/ca-certificates/ca.crt
+      - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
       - /containers/traefik/letsencrypt/acme.json:/letsencrypt/acme.json
