@@ -26,8 +26,7 @@ services:
       - "443:443"
       - "8081:8081" # The Web UI (enabled by --api.insecure=true)
     extra_hosts:
-      - "host.docker.internal:2a00:23c8:bda0:b310::10"
-      - "host.docker.internal:10.10.0.10"
+      host.docker.internal: ::1
     labels:
       traefik.enable: true
       traefik.http.services.traefik.loadbalancer.server.port: 8081
