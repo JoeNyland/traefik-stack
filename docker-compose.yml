@@ -31,8 +31,8 @@ services:
       traefik.enable: true
       traefik.http.services.traefik.loadbalancer.server.port: 8081
       traefik.http.routers.traefik.rule: Host(`traefik`)
-      traefik.http.routers.traefik.middlewares: traefik-ipallowlist
-      traefik.http.middlewares.traefik-ipallowlist.ipallowlist.sourcerange: >
+      traefik.http.routers.traefik.middlewares: trusted-ipallowlist
+      traefik.http.middlewares.trusted-ipallowlist.ipallowlist.sourcerange: >
         2a00:23c8:bda0:b310::/64,
         10.10.0.0/16,
         fdff:0205:2005::/123,
