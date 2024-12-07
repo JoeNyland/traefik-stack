@@ -28,7 +28,7 @@ services:
       - default
       - proxy
     extra_hosts:
-      host.docker.internal: ::1
+      host.docker.internal: 10.10.0.10
     labels:
       traefik.enable: true
       traefik.http.routers.api.rule: Host(`traefik`)
