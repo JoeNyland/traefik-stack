@@ -21,11 +21,12 @@ services:
       --certificatesResolvers.internal-ca.acme.httpChallenge.entryPoint=http
       --serversTransport.rootCAs=/etc/ssl/certs/ca-certificates.crt
       --metrics.prometheus=true
-    network_mode: host
     ports:
       - "80:80"
       - "443:443"
-      - "8081:8081" # The Web UI (enabled by --api.insecure=true)
+    networks:
+      - default
+      - proxy
     extra_hosts:
       host.docker.internal: ::1
     labels:
@@ -45,3 +46,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
       - /containers/traefik/letsencrypt/acme.json:/letsencrypt/acme.json
+
+networks:
+  default:
+    enable_ipv6: true
+  proxy:
+    name: proxy
