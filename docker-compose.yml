@@ -4,7 +4,7 @@ services:
     container_name: traefik
     restart: unless-stopped
     command: >
-      --api.insecure=true
+      --api=true
       --providers.docker
       --providers.docker.exposedByDefault=false
       --entryPoints.http.address=":80"
@@ -12,7 +12,6 @@ services:
       --entryPoints.http.http.redirections.entrypoint.to=https
       --entryPoints.http.http.redirections.entrypoint.scheme=https
       --entryPoints.https.http.tls.certresolver=internal-ca
-      --entryPoints.traefik.address=":8080"
       --certificatesResolvers.internal-ca.acme.tlsChallenge=true
       --certificatesResolvers.internal-ca.acme.email=admin@home.joe.nyland.io
       --certificatesresolvers.internal-ca.acme.caServer=https://ca.home.joe.nyland.io:9000/acme/acme/directory
@@ -31,8 +30,8 @@ services:
       host.docker.internal: ::1
     labels:
       traefik.enable: true
-      traefik.http.services.traefik.loadbalancer.server.port: 8080
-      traefik.http.routers.traefik.rule: Host(`traefik`)
+      traefik.http.routers.api.rule: Host(`traefik`)
+      traefik.http.routers.api.service: api@internal
       traefik.http.routers.traefik.middlewares: trusted-ipallowlist
       traefik.http.middlewares.trusted-ipallowlist.ipallowlist.sourcerange: >
         2a00:23c8:bda0:b310::/64,
