@@ -51,3 +51,4 @@ networks:
     enable_ipv6: true
   proxy:
     name: proxy
+    enable_ipv6: true
