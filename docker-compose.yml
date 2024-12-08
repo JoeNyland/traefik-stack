@@ -33,7 +33,7 @@ services:
       traefik.enable: true
       traefik.http.routers.api.rule: Host(`traefik`)
       traefik.http.routers.api.service: api@internal
-      traefik.http.routers.traefik.middlewares: trusted-ipallowlist
+      traefik.http.routers.api.middlewares: trusted-ipallowlist
       traefik.http.middlewares.trusted-ipallowlist.ipallowlist.sourcerange: >
         2a00:23c8:bda0:b310::/64,
         10.10.0.0/16,
