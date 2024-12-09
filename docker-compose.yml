@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     command: >
       --api=true
+      --log.level=INFO
       --providers.docker
       --providers.docker.exposedByDefault=false
       --providers.docker.network=proxy
