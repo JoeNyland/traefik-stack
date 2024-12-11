@@ -27,7 +27,6 @@ services:
       - "80:80"
       - "443:443"
     networks:
-      - default
       - proxy
     extra_hosts:
       host.docker.internal: 10.10.0.10
@@ -52,8 +51,6 @@ services:
       - /containers/traefik/letsencrypt/acme.json:/letsencrypt/acme.json
 
 networks:
-  default:
-    enable_ipv6: true
   proxy:
     name: proxy
     enable_ipv6: true
