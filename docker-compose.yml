@@ -22,6 +22,7 @@ services:
       --certificatesResolvers.internal-ca.acme.httpChallenge=true
       --certificatesResolvers.internal-ca.acme.httpChallenge.entryPoint=http
       --serversTransport.rootCAs=/etc/ssl/certs/ca-certificates.crt
+      --metrics.prometheus=true
     ports:
       - "80:80"
       - "443:443"
