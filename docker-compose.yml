@@ -41,7 +41,7 @@ services:
         fdff:0205:2005::/123,
         172.16.255.0/27,
         fd21:ae03:5023:2::/64,
-        172.23.0.0/16
+        172.19.0.0/16
     environment:
       LEGO_CA_CERTIFICATES: /etc/ssl/certs/ca-certificates.crt
       LEGO_CA_SERVER_NAME: ca.home.joe.nyland.io
