@@ -6,7 +6,7 @@ services:
     command: >
       --api=true
       --log.level=${LOG_LEVEL:-INFO}
-      --accesslog=true
+      --accesslog=${ACCESS_LOG:-true}
       --providers.docker
       --providers.docker.exposedByDefault=false
       --providers.docker.network=proxy
