@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     command: >
       --api=true
-      --log.level=INFO
+      --log.level=${LOG_LEVEL:-INFO}
       --accesslog=true
       --providers.docker
       --providers.docker.exposedByDefault=false
