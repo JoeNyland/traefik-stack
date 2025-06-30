@@ -37,7 +37,6 @@ services:
       traefik.http.routers.api.middlewares: trusted-ipallowlist, authentik
       traefik.http.middlewares.trusted-ipallowlist.ipallowlist.sourcerange: >
         2a00:23c8:bda0:b310::/64,
-        2a00:23c8:bda0:b307::/64,
         fdff:0205:2005::/123,
         fd21:ae03:5023:1::/64,
         172.19.0.0/16,
